@@ -13,7 +13,7 @@ export async function run(provider: NetworkProvider) {
 
     // Create content Cell
     let content = buildOnchainMetadata(jettonParams);
-    // set Tax address here
+    // set Tax address here 
     let taxAdress = Address.parse("UQDJAyNR0YwP-ewuhqJ7wFDUNrvCNANvD7ZrqJlcGLFpQuQr")
 
     const sampleJetton = provider.open(await SampleJetton.fromInit(provider.sender().address as Address, content, 1000000000000000000n, taxAdress as Address));
