@@ -12,7 +12,7 @@ message MintPublic {
 contract SampleJetton with Jetton {
     totalSupply: Int as coins;
     owner: Address;
-    tax : Address;
+    tax : Address; // Initialize the master with tax address so it can be passed later to Jetton wallets
     content: Cell;
     mintable: Bool;
     
