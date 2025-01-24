@@ -1,91 +1,31 @@
-# Sample Ton Jetton Contract
+# TON Taxable Jetton Contract
 
-This repository contains a blueprint project for creating and deploying a Jetton contract on the TON blockchain. The project includes the smart contract written in the Tact language and a deploy script that allows users to customize their Jetton token's attributes, such as name, description, symbol, and image.
-
-Check my Youtube [Nikandr Surkov](https://www.youtube.com/@NikandrSurkov) for more tutorials and guides.
+This repository contains a **TON smart contract** designed for **educational purposes**. It is an edited version of the original **TON Jetton Contract**, modified to implement a **taxation mechanism** for jetton transfers. Each transaction automatically sends a tax to a predefined wallet.
 
 ## Features
+- Fully functional **Jetton contract** for the TON blockchain.
+- Implements a **tax mechanism** where a percentage of every transaction is automatically sent to a specified tax wallet.
+- Designed for **learning purposes**, showcasing how to manipulate and extend existing TON contracts.
 
-- **Ton Jetton Smart Contract**: Written in Tact language, the contract includes features such as minting, burning, and transferring tokens.
-- **Deploy Script**: Easily customizable script to deploy your Jetton contract with personalized attributes.
-- **Maximum Supply Control**: Ensure the total supply of tokens cannot exceed a specified limit.
-- **Mintable Flag**: Control whether new tokens can be minted after deployment.
-- **Owner Permissions**: Only the owner can mint new tokens and update certain contract parameters.
+## How It Works
+1. **Jetton Transfers**:
+   - Users can transfer jettons between wallets as with a standard jetton contract.
+   
+2. **Tax Mechanism**:
+   - During each transfer, the contract calculates a predefined **tax percentage**.
+   - The calculated tax amount is automatically sent to the **tax wallet**.
 
-## Customizable Attributes
+3. **Predefined Wallet**:
+   - The tax wallet address is hardcoded or configurable within the contract.
 
-Before deploying the contract, you can update the following attributes in the deploy script:
+## Use Cases
+This project is intended to help developers:
+- Understand and modify TON smart contracts.
+- Learn how to integrate additional features like taxes into existing contracts.
+- Explore advanced Jetton functionality.
 
-- **Name**: The name of your Jetton token.
-- **Description**: A brief description of your Jetton token.
-- **Symbol**: The symbol representing your Jetton token.
-- **Image**: A URL or IPFS link to an image representing your Jetton token.
-
-## How to Use
-
-1. **Clone the Repository**:
-    ```bash
-    git clone https://github.com/nikandr-surkov/Sample-Ton-Jetton-Contract.git
-    ```
-
-2. **Navigate to the Project Directory**:
-    ```bash
-    cd sample-ton-jetton-contract
-    ```
-
-3. **Install Dependencies**:
-    ```bash
-    npm install
-    ```
-
-4. **Build the Contract**:
-    ```bash
-    npx blueprint build
-    ```
-
-5. **Customize the Deploy Script**:
-    - Open the `deploy.js` file.
-    - Update the `name`, `description`, `symbol`, and `image` variables with your desired values.
-
-6. **Deploy the Contract**:
-    ```bash
-    npx blueprint run
-    ```
-
-## Contract Overview
-
-### Ton Jetton Contract
-
-The Ton Jetton contract is based on the TEP-74 standard and includes the following features:
-
-- **Minting**: Allows the owner to mint new tokens up to the maximum supply.
-- **Burning**: Enables token holders to burn their tokens, reducing the total supply.
-- **Transferring**: Supports transferring tokens between addresses.
-- **Metadata**: Stores metadata such as name, description, symbol, and image URL.
-
-### Example Initialization
-
-```tact
-init(owner: Address, content: Cell, max_supply: Int) {
-    self.totalSupply = 0;
-    self.owner = owner;
-    self.mintable = true;
-    self.content = content;
-    self.max_supply = max_supply;
-}
-```
-
-### Example Minting Function
-
-```tact
-receive(msg: Mint) {
-    let ctx: Context = context();
-    require(ctx.sender == self.owner, "Not Owner");
-    require(self.mintable, "Can't Mint Anymore");
-    self.mint(msg.receiver, msg.amount, self.owner);
-}
-```
-
-## License
-
-This project is licensed under the MIT License.
+## Deployment
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/taxable-jetton-contract.git
+   cd taxable-jetton-contract
